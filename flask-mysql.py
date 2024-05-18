@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import pymysql
 import os
-
 from dotenv import load_dotenv
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -16,9 +16,12 @@ def create_connection():
         cursorclass=pymysql.cursors.DictCursor
     )
 
-    with conn.cursor() as cursor:
-        cursor.execute("CREATE DATABASE IF NOT EXISTS flask_mysql")
-        conn.commit()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("CREATE DATABASE IF NOT EXISTS flask_mysql")
+            conn.commit()
+    finally:
+        conn.close()
 
     conn = pymysql.connect(
         host='localhost',
@@ -128,5 +131,7 @@ def delete():
         return render_template('delete.html')
 
 if __name__ == '__main__':
-    create_table(create_connection()) 
+    conn = create_connection()
+    create_table(conn)
+    conn.close()
     app.run(debug=True)
