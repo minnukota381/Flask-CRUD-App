@@ -33,7 +33,7 @@ def insert():
 @app.route('/display')
 def display():
     data = list(users_collection.find())
-    return render_template('display.html', data=data)
+    return render_template('display2.html', data=data)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -43,7 +43,7 @@ def search():
         result = users_collection.find_one({"reg_number": reg_number})
         
         if result:
-            return render_template('display.html', data=[result])
+            return render_template('display2.html', data=[result])
         else:
             return render_template('search.html', message='Data not found', reg_number=reg_number)
     else:
