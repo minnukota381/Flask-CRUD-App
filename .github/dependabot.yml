@@ -1,14 +1,10 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/"
+  - package-ecosystem: "pip" # Specifies that pip is used for dependency management
+    directory: "/" # Location of requirements.txt
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: "weekly" # Frequency of updates: daily, weekly, monthly
+    open-pull-requests-limit: 5 # Limit the number of open PRs
     commit-message:
       prefix: "deps"
       include: "scope"
-    registries:
-      - type: "pip"
-        url: "https://pypi.org/simple"
-        replace-base: true
