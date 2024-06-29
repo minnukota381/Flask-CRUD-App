@@ -1,3 +1,6 @@
+# DATABASE_URL=postgresql://postgres:12345@localhost:5432/my_flask_db
+
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 import psycopg2
 from dotenv import load_dotenv

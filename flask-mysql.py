@@ -1,3 +1,6 @@
+# MYSQL_USERNAME=root
+# MYSQL_PASSWORD=12345
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 import pymysql
 import os
